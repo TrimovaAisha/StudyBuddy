@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    const themeBtn = document.getElementById('color');
+    themeBtn.addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+    });
     const btnFooter = document.getElementById('btnFooter');
     const descFooter = document.getElementById('desc');
     const nameInputFooter = document.getElementById('nameFooter');
