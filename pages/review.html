@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <header>
+        <div class="head">
+            <h1>StudyBuddy</h1>
+            <p>Добро пожаловать на платформу онлайн курсов!</p>
+            <a href="../index.html">Войти</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="aboutus.html">О компании</a>
+            <a href="review.html">Отзывы</a>
+            <button id="color">Тема</button>
+        </div>
+    </header>
+    <main>
+        <section class="reviews">
+            <h2 class="reviews-title">Отзывы наших студентов</h2>
+            <div class="reviews-list">
+                <div class="review-card">
+                    <img src="../images/aisha.jpg" alt="student">
+                    <h3>Айша</h3>
+                    <p class="review-text">
+                        Курс по Python был очень понятным. Всё объясняют простым языком.
+                    </p>
+                </div>
+                <div class="review-card">
+                    <img src="../images/man.avif" alt="student">
+                    <h3>Максат</h3>
+                    <p class="review-text">
+                        Платформа удобная, задания интересные, поддержка отвечает быстро.
+                    </p>
+                </div>
+                <div class="review-card">
+                    <img src="../images/aisana.jpg" alt="student">
+                    <h3>Айсана</h3>
+                    <p class="review-text">
+                        После курса по Java стало легче понимать программирование.
+                    </p>
+                </div>
+            </div>
+            <div class="review-form">
+                <h3>Оставьте свой отзыв</h3>
+                <p>Вам понравилась платформа?</p>
+                <label>
+                    <input type="radio" name="like" value="yes">
+                    Да
+                </label>
+                <label>
+                    <input type="radio" name="like" value="no">
+                    Нет
+                </label>
+                <p>Какие курсы вы проходили?</p>
+                <label>
+                    <input type="checkbox" class="course-check" value="Python">
+                    Python
+                </label>
+                <label>
+                    <input type="checkbox" class="course-check" value="Java">
+                    Java
+                </label>
+                <label>
+                    <input type="checkbox" class="course-check" value="Design">
+                    Дизайн
+                </label>
+                <button id="sendReview">Отправить отзыв</button>
+                <p id="reviewResult"></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-card">
+            <h1 id="title">Поможем в выборе!</h1>
+            <p id="desc">
+                Если у вас есть вопросы о формате или вы не знаете что
+                выбрать, оставьте свою почту и мы отправим письмо.
+            </p>
+            <input type="text" id="nameFooter" placeholder="Введите имя">
+            <input type="email" id="emailFooter" placeholder="Введите email">
+            <span id="nameError" class="error"></span>
+            <span id="emailError" class="error"></span>
+            <button id="btnFooter">Отправить</button>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+</body>
+</html>

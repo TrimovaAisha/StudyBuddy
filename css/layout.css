@@ -6,40 +6,70 @@
     align-items: center;
 }
 footer {
-    background-color: rgb(180, 180, 180);
-    width: auto;
-    height: 500px;
+    background-color: #3b82f6;
+    width: 100%;
+    padding: 60px 0;       /* отступ сверху и снизу */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* центрируем футер-карту горизонтально */
 }
+
 .footer-card {
     width: 500px;
-    height: 350px;
     background-color: #ffffff;
     border-radius: 40px;
-    padding: 25px;               
-    display: flex;              
+    padding: 40px 30px;    /* больше сверху/снизу */
+    display: flex;
     flex-direction: column;
-    gap: 12px;                  
+    gap: 12px;             /* расстояние между элементами */
     box-sizing: border-box;
+    align-items: stretch;   /* input/button растягиваются по ширине */
 }
+
+.footer-card h1 {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
+.footer-card p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
 .footer-card input {
-    background-color: rgb(180, 180, 180);
-    border-radius: 40px;
-    height: 50px;
     width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
+    height: 50px;
+    border-radius: 40px;
     border: none;
     outline: none;
+    padding: 0 15px;
+    font-size: 16px;
+    background-color: rgb(180, 180, 180);
+    box-sizing: border-box;
 }
+
 .footer-card button {
     width: 100%;
     height: 60px;
-    background-color: rgb(180, 180, 180);
     border-radius: 40px;
-    position: static;
     border: none;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 18px;
     cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-card button:hover {
+    background-color: #2563eb;
+}
+
+.footer-card .error {
+    color: red;
+    font-size: 14px;
+    min-height: 18px;  /* место под ошибку */
+    margin-bottom: 4px;
 }
