@@ -1,31 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
+    function validateNameEmail(nameInput, emailInput, nameError, emailError) {
+        let valid = true;
+        nameError.textContent = "";
+        emailError.textContent = "";
+        if (nameInput.value.trim().length < 3) {
+            nameError.textContent = "Введите имя больше трех символов";
+            valid = false;
+        }
+        if (!emailInput.value.includes("@")) {
+            emailError.textContent = "Некорректно ввели электронную почту";
+            valid = false;
+        }
+        return valid;
+    }
+    function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+    }
+    function filterCourses(category, courses) {
+        for (let i = 0; i < courses.length; i++) {
+            if (category === "all" || courses[i].classList.contains(category)) {
+                courses[i].style.display = "block";
+            } else {
+                courses[i].style.display = "none";
+            }
+        }
+    }
     const buttonMain = document.getElementById("sender");
     const nameInputMain = document.getElementById("name");
     const emailInputMain = document.getElementById("email");
     const nameErrorMain = document.getElementById("nameError");
     const emailErrorMain = document.getElementById("emailError");
     if (buttonMain && nameInputMain && emailInputMain && nameErrorMain && emailErrorMain) {
-        buttonMain.addEventListener("click", function () {
-            let valid = true;
-            nameErrorMain.textContent = "";
-            emailErrorMain.textContent = "";
-            if (nameInputMain.value.trim().length < 3) {
-                nameErrorMain.textContent = "Введите имя больше трех символов";
-                valid = false;
-            }
-            if (!emailInputMain.value.includes("@")) {
-                emailErrorMain.textContent = "Некорректно ввели электронную почту";
-                valid = false;
-            }
-            if (valid) {
+        buttonMain.addEventListener("click", () => {
+            if (validateNameEmail(
+                nameInputMain,
+                emailInputMain,
+                nameErrorMain,
+                emailErrorMain
+            )) {
                 window.location.href = "./pages/aboutus.html";
             }
         });
     }
     const themeBtn = document.getElementById('color');
-    themeBtn.addEventListener('click', function() {
-        document.body.classList.toggle('dark-theme');
-    });
+    if (themeBtn) {
+        themeBtn.addEventListener('click', toggleTheme);
+    }
     const btnFooter = document.getElementById('btnFooter');
     const descFooter = document.getElementById('desc');
     const nameInputFooter = document.getElementById('nameFooter');
@@ -34,20 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailErrorFooter = document.getElementById('emailError');
     if (btnFooter && descFooter && nameInputFooter && emailInputFooter && nameErrorFooter && emailErrorFooter) {
         btnFooter.addEventListener('click', () => {
-            let valid = true;
-            if (!nameInputFooter.value.trim()) {
-                nameErrorFooter.textContent = 'Введите имя';
-                valid = false;
-            } else {
-                nameErrorFooter.textContent = '';
-            }
-            if (!emailInputFooter.value.includes("@")) {
-                emailErrorFooter.textContent = 'Введите корректный email';
-                valid = false;
-            } else {
-                emailErrorFooter.textContent = '';
-            }
-            if (!valid) return;
+            if (!validateNameEmail(
+                nameInputFooter,
+                emailInputFooter,
+                nameErrorFooter,
+                emailErrorFooter
+            )) return;
             descFooter.textContent = 'Вы отправили заявку!';
             nameInputFooter.value = '';
             emailInputFooter.value = '';
@@ -58,35 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnDesign = document.getElementById("btnDesign");
     const courses = document.querySelectorAll(".course-card");
     if (btnAll && btnProg && btnDesign && courses.length > 0) {
-        btnAll.addEventListener("click", function () {
-            for (let i = 0; i < courses.length; i++) {
-                courses[i].style.display = "block";
-            }
-        });
-        btnProg.addEventListener("click", function () {
-            for (let i = 0; i < courses.length; i++) {
-                if (courses[i].classList.contains("programming")) {
-                    courses[i].style.display = "block";
-                } else {
-                    courses[i].style.display = "none";
-                }
-            }
-        });
-        btnDesign.addEventListener("click", function () {
-            for (let i = 0; i < courses.length; i++) {
-                if (courses[i].classList.contains("design")) {
-                    courses[i].style.display = "block";
-                } else {
-                    courses[i].style.display = "none";
-                }
-            }
-        });
+        btnAll.addEventListener("click", () => filterCourses("all", courses));
+        btnProg.addEventListener("click", () => filterCourses("programming", courses));
+        btnDesign.addEventListener("click", () => filterCourses("design", courses));
     }
     const buyButtons = document.querySelectorAll(".buy-btn");
     const resultText = document.getElementById("resultText");
     if (buyButtons.length > 0 && resultText) {
         for (let i = 0; i < buyButtons.length; i++) {
-            buyButtons[i].addEventListener("click", function () {
+            buyButtons[i].addEventListener("click", () => {
                 resultText.textContent = "Вы успешно записались на курс!";
             });
         }
@@ -94,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendReviewBtn = document.getElementById("sendReview");
     const reviewResult = document.getElementById("reviewResult");
     if (sendReviewBtn && reviewResult) {
-        sendReviewBtn.addEventListener("click", function () {
+        sendReviewBtn.addEventListener("click", () => {
             const radios = document.querySelectorAll('input[name="like"]');
             const checkboxes = document.querySelectorAll(".course-check");
             let liked = "";
@@ -120,5 +112,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 (selectedCourses.length > 0 ? selectedCourses.join(", ") : "не выбраны");
         });
     }
-
 });
